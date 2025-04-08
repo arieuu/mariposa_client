@@ -1,11 +1,12 @@
+import { Post } from "../types";
 import JobListing, { JobListingProps } from "./JobListing";
 
 interface Props {
     title: string;
-    jobs: JobListingProps[];
+    postList?: Post[];
 }
 
-function JobSection({ title, jobs }: Props) {
+function JobSection({ title, postList }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 mb-16">
       <div className="flex justify-between items-center mb-6">
@@ -18,9 +19,13 @@ function JobSection({ title, jobs }: Props) {
         */}
       </div>
       <div className="space-y-4">
-        {jobs.map((job, index) => (
-          <JobListing key={index} title={job.title} company={job.company} />
-        ))}
+        
+        {/*Here it'll be loading if the data is not there and will show if it is*/}
+
+        {postList ? postList?.map((post, index) => (
+          <JobListing key={index} title={post.title} company={post.body} />
+        )) : "loading..."}
+
       </div>
     </div>
   );

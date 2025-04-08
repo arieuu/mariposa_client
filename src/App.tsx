@@ -3,6 +3,9 @@ import JobCategories from './components/JobCategories';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
+import axios from 'axios';
+import { Post } from './types';
+import { useEffect, useState } from 'react';
 
 
 function App() {
@@ -34,15 +37,27 @@ function App() {
     }
   ];
 
+  const [postList, setPostList] = useState<Post[]>()
+
+  // We request to the api and when we have the data we set the state and that re-renders the component
+
+  async function getPosts() {
+      const result = await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
+      setPostList(result.data) // Setting state
+  }
+
+  getPosts()
+  
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <Hero />
       <JobCategories number='500'/>
-      <JobSection title='Available postings' jobs={jobList}/>
+      <JobSection title='Available postings' postList={postList}/>
       <Footer />
     </div>
   );
+
 }
 
 export default App;

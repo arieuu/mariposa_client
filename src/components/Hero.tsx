@@ -6,7 +6,7 @@ function Hero() {
     <div className="text-center py-16 px-4">
       <p className="mb-4">Find jobs that are real, directly on their website</p>
       <h2 className="text-5xl font-serif font-bold mb-8">
-       🦋 MARIPOSA 🦋
+       MARIPOSA
       </h2>
       <div className="max-w-xl mx-auto relative">
         {/*<input
