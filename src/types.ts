@@ -1,5 +1,7 @@
 export interface Post {
     id: number;
-    title: string;
-    body: string
+    job_title: string;
+    body: string;
+    origin_company: string;
+    job_description: string
 }

@@ -1,7 +1,9 @@
 import { Coffee } from 'lucide-react';
 
 export interface JobListingProps{
-    title: string;
+    origin_company: string;
+    job_title: string;
+    job_description: string;
     company: string;
     location?: string;
     time?: string;
@@ -9,7 +11,7 @@ export interface JobListingProps{
     salary?: string;
 }
 
-function JobListing({ title, company, location, time, requirements = [], salary = '' }: JobListingProps) {
+function JobListing({ job_title, job_description, company, location, time, requirements = [], salary = '' }: JobListingProps) {
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
       <div className="flex gap-4 items-start">
@@ -22,13 +24,14 @@ function JobListing({ title, company, location, time, requirements = [], salary 
             <span className="text-gray-400">•</span>
             <span className="text-gray-600">{location}</span>
           </div>
-          <h3 className="font-bold text-lg mb-2">{title}</h3>
+          <h3 className="font-bold text-lg mb-2">{job_title}</h3>
           <div className="flex gap-2 flex-wrap">
             {requirements.map((req, index) => (
               <span key={index} className="bg-blue-50 text-blue-600 px-3 py-1 rounded-full text-sm">
                 {req}
               </span>
             ))}
+            {job_description}
             {salary && (
               <span className="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm">
                 {salary}

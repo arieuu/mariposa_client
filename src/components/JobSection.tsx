@@ -23,7 +23,7 @@ function JobSection({ title, postList }: Props) {
         {/*Here it'll be loading if the data is not there and will show if it is*/}
 
         {postList ? postList?.map((post, index) => (
-          <JobListing key={index} title={post.title} company={post.body} />
+          <JobListing key={index} origin_company={post.origin_company} job_description={post.job_description} job_title={post.job_title} company={post.body} />
         )) : "loading..."}
 
       </div>

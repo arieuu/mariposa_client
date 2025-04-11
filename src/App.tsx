@@ -43,10 +43,22 @@ function App() {
 
   async function getPosts() {
       const result = await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
-      setPostList(result.data) // Setting state
+      console.log(result.data[0])
+  }
+
+  async function getJobs() {
+    console.log("running")
+    //const result = await axios.get("http://localhost:9001/jobs")
+    const result = await axios.get("http://localhost:9001/jobs")
+    setPostList(result.data) // Setting state
+    console.log(result.data)
   }
 
   getPosts()
+  getJobs()
+
+  console.log("STATE" + postList)
+
   
   return (
     <div className="min-h-screen bg-gray-50">
