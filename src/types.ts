@@ -1,7 +1,7 @@
-export interface Post {
-    id: number;
-    job_title: string;
-    body: string;
+export interface IJobListing{
     origin_company: string;
-    job_description: string
+    job_title: string;
+    job_description: string;
+    posted_date: string;
+    job_post_link: string;
 }

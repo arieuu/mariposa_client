@@ -4,68 +4,30 @@ import Footer from './components/Footer';
 import Hero from './components/Hero';
 import Navbar from './components/Navbar';
 import axios from 'axios';
-import { Post } from './types';
-import { useEffect, useState } from 'react';
+import { IJobListing } from './types';
+import { useState } from 'react';
 
 
 function App() {
   
-  const jobList= [
-    {
-      company: 'NeuralLink',
-      location: 'Austin, Texas, United States',
-      title: 'Veterinary Technician',
-      requirements: ['2+ years experience'],
-      salary: '$24-$39',
-      time: 'Yesterday'
-    },
-    {
-      company: 'NeuralLink',
-      location: 'Austin, Texas, United States',
-      title: 'Software Engineer, Data Engineering',
-      requirements: ["Bachelor's Degree", '1+ years experience'],
-      salary: '$124,000-$180,000',
-      time: 'Yesterday'
-    },
-    {
-      company: 'NeuralLink',
-      location: 'Austin, Texas, United States',
-      title: 'Software Engineer, Data Engineering',
-      requirements: ["Bachelor's Degree", '1+ years experience'],
-      salary: '$124,000-$180,000',
-      time: 'Yesterday'
-    }
-  ];
-
-  const [postList, setPostList] = useState<Post[]>()
+  const [jobList, setJobList] = useState<IJobListing[]>()
 
   // We request to the api and when we have the data we set the state and that re-renders the component
 
-  async function getPosts() {
-      const result = await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
-      console.log(result.data[0])
-  }
-
   async function getJobs() {
-    console.log("running")
-    //const result = await axios.get("http://localhost:9001/jobs")
     const result = await axios.get("https://mariposa-api-2.onrender.com/jobs")
-    setPostList(result.data) // Setting state
+    setJobList(result.data) // Setting state
     console.log(result.data)
   }
 
-  getPosts()
   getJobs()
 
-  console.log("STATE" + postList)
-
-  
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <Hero />
+      <Hero job_postings_qtty={jobList!.length}/>
       <JobCategories number='500'/>
-      <JobSection title='Available postings' postList={postList}/>
+      <JobSection title='Available postings' jobList={ jobList }/>
       <Footer />
     </div>
   );
