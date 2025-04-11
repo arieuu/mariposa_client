@@ -49,7 +49,7 @@ function App() {
   async function getJobs() {
     console.log("running")
     //const result = await axios.get("http://localhost:9001/jobs")
-    const result = await axios.get("http://localhost:9001/jobs")
+    const result = await axios.get("https://mariposa-api-2.onrender.com/jobs")
     setPostList(result.data) // Setting state
     console.log(result.data)
   }
