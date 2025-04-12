@@ -1,7 +1,7 @@
 import { CheckCircle } from "lucide-react";
 
 interface Props {
-  job_postings_qtty: number
+  job_postings_qtty?: number
 }
 
 function Hero({ job_postings_qtty }:Props) {
@@ -38,7 +38,7 @@ function Hero({ job_postings_qtty }:Props) {
           <CheckCircle className="text-blue-500" size={20} />
           <div>
             <p className="font-bold">Job Postings</p>
-            <p className="text-gray-600"> { job_postings_qtty } </p>
+            <p className="text-gray-600"> { job_postings_qtty ? job_postings_qtty : "unknown"} </p>
           </div>
         </div>
         <div className="flex items-center gap-2">

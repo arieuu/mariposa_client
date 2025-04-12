@@ -1,9 +1,14 @@
 import { Coffee } from 'lucide-react';
 import { IJobListing } from '../types';
+import { useState } from 'react';
 
 
 
 function JobListing({ job_title, job_description, origin_company, job_post_link, posted_date }: IJobListing) {
+
+const [ showMore, setShowMore ] = useState(false);
+
+
   return (
     <div className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
       <div className="flex gap-4 items-start">
@@ -23,7 +28,11 @@ function JobListing({ job_title, job_description, origin_company, job_post_link,
                 {req}
               </span>
             ))*/}
-            { job_description }
+
+            { showMore ? job_description : job_description.substring(0, 500) + "..." }
+            
+            <button className='bg-black text-white p-2 rounded-sm' onClick={() => setShowMore(!showMore)}> { showMore ? "Show less" : "Show more"} </button>
+
             {/*salary && (
               <span className="bg-green-50 text-green-600 px-3 py-1 rounded-full text-sm">
                 {salary}

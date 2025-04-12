@@ -1,4 +1,4 @@
-export default [
+ const faky = [
 {
 "origin_company": "PrimeIT",
 "job_title": "Rollout Optical Engineer",
@@ -56,3 +56,5 @@ export default [
 "job_post_link": "https://primeit.pt/carrers/jobs/java-developer-frances"
 }
 ]
+
+export default faky;
