@@ -11,7 +11,7 @@ import fakeData from './fakeData';
 
 function App() {
   
-  const [jobList, setJobList] = useState<IJobListing[]>()
+  const [jobList, setJobList] = useState<IJobListing[]>();
 
   // We request to the api and when we have the data we set the state and that re-renders the component
 
@@ -19,8 +19,7 @@ function App() {
     // const result = await axios.get("https://mariposa-api-2.onrender.com/jobs")
     // setJobList(result.data) // Setting state
     // console.log(result.data)
-    !jobList ? setJobList(fakeData) : 
-    console.log(jobList)
+    !jobList && setJobList(fakeData) 
   }
 
   getJobs()
