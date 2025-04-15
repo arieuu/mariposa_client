@@ -13,7 +13,36 @@ function JobSection({ title, jobList }: Props) {
 
   !displayedJobs.jobs && jobList && setDisplayedJobs({"displayAll": false, "jobs": jobList.slice(0,5)})
 
-  console.log(displayedJobs.jobs)
+  // Filtering system
+
+  let filteredItems: IJobListing[] = []
+  
+  // Filter state
+  const [ filteredItemsState, setFilteredItemsState ] = useState<{"filtered": boolean, "items": IJobListing[]}>({"filtered": false, "items": []})
+
+  function filter(words: string[]) {
+    filteredItems = [] // Clear the filtered items before doing a new search
+
+    jobList?.map((job) => {
+
+      words.map((word) => {
+
+        if(job.job_title.replace(" ", "").toLowerCase().includes(word)
+          || job.job_description.replace(" ", "").toLocaleLowerCase().includes(word))
+        {
+          // matches the criteria
+          console.log(job)
+          filteredItems.push(job)
+        }
+      })
+
+    })
+
+    !filteredItemsState.filtered && setFilteredItemsState({ "filtered": true, "items": filteredItems});
+
+  }
+
+  console.log(filteredItems)
 
   return (
     <div className="max-w-7xl mx-auto px-4 mb-16">
@@ -27,22 +56,26 @@ function JobSection({ title, jobList }: Props) {
         */}
       </div>
       <div className="space-y-4">
+
+      <div><button onClick={() => filter(["cobol"])}>Filter</button> </div>
         
 
         
-        { (!displayedJobs.displayAll && displayedJobs.jobs ) ? displayedJobs.jobs.map((job, index) => (
-
+        { (!displayedJobs.displayAll && displayedJobs.jobs && !filteredItemsState.filtered ) ? displayedJobs.jobs.map((job, index) => (
           <JobListing key={index} origin_company={job.origin_company} job_description={job.job_description} job_title={job.job_title} posted_date={job.posted_date} job_post_link={job.job_post_link}/>
           
         )) : "loading" }
         
-        { ( displayedJobs.displayAll && jobList)? jobList?.map((job, index) => (
+        { ( displayedJobs.displayAll && jobList && !filteredItemsState.filtered ) ? jobList?.map((job, index) => (
           <JobListing key={index} origin_company={job.origin_company} job_description={job.job_description} job_title={job.job_title} posted_date={job.posted_date} job_post_link={job.job_post_link}/>
         )) : !jobList && "loading..."}
 
 
-        { !displayedJobs.displayAll && <button onClick={() => setDisplayedJobs({"displayAll": true, "jobs": jobList})}> Show all </button>}
+        { !displayedJobs.displayAll && !filteredItemsState.filtered && <button onClick={() => setDisplayedJobs({"displayAll": true, "jobs": jobList})}> Show all </button>}
 
+        { filteredItemsState.filtered && filteredItemsState.items.map((job, index) => (
+          <JobListing key={index} origin_company={job.origin_company} job_description={job.job_description} job_title={job.job_title} posted_date={job.posted_date} job_post_link={job.job_post_link}/>
+        ))}
       </div>
     </div>
   );
