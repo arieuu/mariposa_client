@@ -13,6 +13,7 @@ function App() {
   
   const [jobList, setJobList] = useState<IJobListing[]>();
 
+
   // We request to the api and when we have the data we set the state and that re-renders the component
 
   async function getJobs() {
@@ -28,7 +29,6 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       <Hero job_postings_qtty={jobList?.length}/>
-      <JobCategories number='500'/>
       <JobSection title='Available postings' jobList={ jobList }/>
       <Footer />
     </div>

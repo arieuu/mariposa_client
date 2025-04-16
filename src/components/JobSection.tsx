@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IJobListing } from "../types";
 import JobListing from "./JobListing";
+import JobCategories from "./JobCategories";
 
 interface Props {
     title: string;
@@ -29,8 +30,8 @@ function JobSection({ title, jobList }: Props) {
 
       words.map((word) => {
 
-        if(job.job_title.replace(" ", "").toLowerCase().includes(word)
-          || job.job_description.replace(" ", "").toLocaleLowerCase().includes(word))
+        if(job.job_title.replace(" ", "").toLowerCase().includes(word.toLowerCase().replace(" ", ""))
+          || job.job_description.replace(" ", "").toLowerCase().includes(word.toLowerCase().replace(" ", "")))
         {
           // matches the criteria
           console.log(job)
@@ -47,6 +48,7 @@ function JobSection({ title, jobList }: Props) {
 
   return (
     <div className="max-w-7xl mx-auto px-4 mb-16">
+      <JobCategories number="500" clickedFilter={filter} />
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-3xl font-serif font-bold">{title}</h2>
         {/*
@@ -57,10 +59,6 @@ function JobSection({ title, jobList }: Props) {
         */}
       </div>
       <div className="space-y-4">
-
-      <div><button onClick={() => filter(["cobol"])}>cobol</button> </div>
-      <div><button onClick={() => filter(["engineer"])}>engineer</button> </div>
-        
 
         
         { (!filteredItemsState.filtered && !displayedJobs.displayAll && displayedJobs.jobs  ) ? displayedJobs.jobs.map((job, index) => (
