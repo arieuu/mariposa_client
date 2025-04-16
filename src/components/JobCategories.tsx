@@ -11,7 +11,7 @@ function JobCategories({number, clickedFilter}: Props) {
     { icon: <Code size={24} />, title: "Cobol", count: number + ' Postings'},
     { icon: <PenTool size={24} />, title: 'Prime IT', count: '933 Postings' },
     { icon: <BarChart2 size={24} />, title: 'Database', count: '1.3k Postings' },
-    { icon: <Database size={24} />, title: 'Angular', count: '2.0k Postings' },
+    { icon: <Database size={24} />, title: 'Unfilter', count: '2.0k Postings' },
   ];
 
   return (

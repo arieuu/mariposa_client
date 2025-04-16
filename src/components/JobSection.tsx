@@ -26,6 +26,12 @@ function JobSection({ title, jobList }: Props) {
     // setFilteredItemsState({"filtered": false, "items": undefined})
     filteredItemsState.items = undefined
 
+        if(words.includes("Unfilter")) {
+          console.log("here")
+          setFilteredItemsState({ "filtered": false, items: undefined})
+          return
+        }
+
     jobList?.map((job) => {
 
       words.map((word) => {
@@ -42,9 +48,9 @@ function JobSection({ title, jobList }: Props) {
     })
 
     !filteredItemsState.items && setFilteredItemsState({ "filtered": true, "items": filteredItems});
+    console.log(filteredItemsState.filtered)
   }
 
-  console.log(filteredItemsState.filtered)
 
   return (
     <div className="max-w-7xl mx-auto px-4 mb-16">
