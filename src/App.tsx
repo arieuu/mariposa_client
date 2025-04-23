@@ -7,6 +7,7 @@ import axios from 'axios';
 import { IJobListing } from './types';
 import { useState } from 'react';
 import fakeData from './fakeData';
+import { Box } from '@chakra-ui/react';
 
 
 function App() {
@@ -27,10 +28,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Box>
       <Navbar />
       <Hero job_postings_qtty={jobList?.length}/>
       <JobSection title='Available postings' jobList={ jobList }/>
       <Footer />
+      </Box>
     </div>
   );
 

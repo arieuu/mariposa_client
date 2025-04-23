@@ -1,4 +1,6 @@
 import { CheckCircle } from "lucide-react";
+import { ColorModeButton } from "./ui/color-mode";
+import { Button, Input } from "@chakra-ui/react";
 
 interface Props {
   job_postings_qtty?: number
@@ -13,19 +15,23 @@ function Hero({ job_postings_qtty }:Props) {
        MARIPOSA
       </h2>
       <div className="max-w-xl mx-auto relative">
-        {/*<input
+        <input
           type="text"
-          placeholder="Financial Analyst"
-          className="w-full px-6 py-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
+          placeholder="Backend Developer"
+          className="w-full px-6 py-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500"/>
+
         <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">
           Search
         </button>
-        */}
       </div>
-      <h3 className="text-gray-600 mt-8 text-2xl"> All job listing in one place</h3>
+
+      <div className="mt-4">
+        <h4> Filters </h4>
+        <span className="underline mr-1"> code </span>
+        <span className="underline mr-1"> code </span>
+        <span className="underline mr-1"> code </span>
+      </div>
+
       <div className="flex justify-center gap-12 mt-8">
         <div className="flex items-center gap-2">
           <CheckCircle className="text-blue-500" size={20} />
