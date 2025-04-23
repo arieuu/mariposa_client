@@ -26,12 +26,20 @@ function App() {
 
   getJobs()
 
+  const [ filteredWords, setFilteredWords ] = useState<string[]>();
+  const [ searchFilter, setSearchFilter ] = useState(false)
+
+  function updateFilteredWords(filteredWords: string[]) {
+    // this function will set the filtered words coming from the input
+    setFilteredWords(filteredWords)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Box>
       <Navbar />
-      <Hero job_postings_qtty={jobList?.length}/>
-      <JobSection title='Available postings' jobList={ jobList }/>
+      <Hero job_postings_qtty={jobList?.length} sendFilteredWords={updateFilteredWords}/>
+      <JobSection title='Available postings' jobList={ jobList } filteredWords={filteredWords}/>
       <Footer />
       </Box>
     </div>

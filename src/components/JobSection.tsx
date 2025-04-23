@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IJobListing } from "../types";
 import JobListing from "./JobListing";
 import JobCategories from "./JobCategories";
@@ -6,10 +6,11 @@ import JobCategories from "./JobCategories";
 interface Props {
     title: string;
     jobList?: IJobListing[];
+    filteredWords?: string[];
 }
 
-function JobSection({ title, jobList }: Props) {
-
+function JobSection({ title, jobList, filteredWords}: Props) {
+  
   /* We use the displayedJobs state to tracke what jobs can be displayed at any point in time.
      The page will always display the entire displayedJobs, so we mess with setDisplayed jobs and update state
      making the page re-render and show what we want to display
@@ -31,6 +32,7 @@ function JobSection({ title, jobList }: Props) {
   
   const [ filteredItemsState, setFilteredItemsState ] = useState<{"filtered": boolean, "items"?: IJobListing[]}>({"filtered": false, "items": []})
 
+   
   /*
     This filtering function will be called every time a filtering item/button is called.
     It will go through the joblist and for every job it will go through all the filter words.
@@ -68,6 +70,9 @@ function JobSection({ title, jobList }: Props) {
     !filteredItemsState.items && setFilteredItemsState({ "filtered": true, "items": filteredItems});
   }
 
+  // Filter using these and display appropriate jobs
+  
+  console.log(filteredWords)
 
   return (
 
