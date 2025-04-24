@@ -7,8 +7,6 @@ import { ColorModeProvider, DarkMode } from './components/ui/color-mode.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider>
     <App />
-    </Provider>
   </StrictMode>
 );
