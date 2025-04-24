@@ -8,8 +8,6 @@ import { Box } from '@chakra-ui/react';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Provider>
-      <ColorModeProvider forcedTheme='light'> <App /> </ColorModeProvider>
-    </Provider>
+       <App /> 
   </StrictMode>
 );
