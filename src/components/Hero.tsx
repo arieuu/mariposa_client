@@ -11,6 +11,8 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
   const [searchKeyword, setSearchKeyword] = useState<string[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // This is the function that handles the search input submission
+
   function searchAndFilter(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const value = searchInputRef.current?.value.split(" ")
@@ -19,6 +21,7 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
 
     value && setSearchKeyword(value) 
     value && sendFilteredWords(value)
+    console.log(searchKeyword)
   }
 
   return (
@@ -30,6 +33,7 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
       <div className="max-w-xl mx-auto relative">
 
         <form onSubmit={searchAndFilter}>
+
         <input type="text" autoComplete="off" placeholder="Backend Developer" name="searchInput" ref={searchInputRef}
           className="w-full px-6 py-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -44,12 +48,16 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
       </div>
 
       <div className="mt-4">
-        { searchKeyword && <h4> Filters </h4>}
+        { searchKeyword.length > 0 && <h4> Filters </h4>}
 
-        { searchKeyword  && 
+        { searchKeyword.length > 0  && 
           <>
-            <span className="underline mr-1"> { searchKeyword } </span>
-            <span className="mr-1 bg-black text-white p-[2px] "> Clear </span>
+
+            { searchKeyword.map((word, index) => {
+              return <span key={index} className="underline mr-1"> { word } </span>
+            })} 
+
+            <span className="mr-1 bg-black text-white p-[2px] cursor-pointer" onClick={() => {setSearchKeyword([]); sendFilteredWords(["Unfilter"]) }}> Clear </span>
           </>
         }
       </div>

@@ -44,7 +44,6 @@ function JobSection({ title, jobList, filteredWords}: Props) {
   function filter(words: string[]) {
 
     filteredItems = [] // Clear the filtered items before doing a new search
-    filteredItemsState.items = undefined
 
     // Disable filtering system by setting it to false using "unfilter keyword"
 
@@ -67,12 +66,23 @@ function JobSection({ title, jobList, filteredWords}: Props) {
 
     })
 
-    !filteredItemsState.items && setFilteredItemsState({ "filtered": true, "items": filteredItems});
+
+    setFilteredItemsState({ "filtered": true, "items": filteredItems});
+
   }
 
   // Filter using these and display appropriate jobs
-  
-  console.log(filteredWords)
+
+  /* 
+    This will be a side effect and every time filteredWords changes it will run again and filter
+    the jobs just to the ones we need
+  */
+
+  useEffect(() => {
+
+    if(filteredWords) filter(filteredWords) 
+
+  }, [filteredWords])
 
   return (
 

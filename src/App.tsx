@@ -27,10 +27,11 @@ function App() {
   getJobs()
 
   const [ filteredWords, setFilteredWords ] = useState<string[]>();
-  const [ searchFilter, setSearchFilter ] = useState(false)
 
   function updateFilteredWords(filteredWords: string[]) {
+    
     // this function will set the filtered words coming from the input
+    
     setFilteredWords(filteredWords)
   }
 
