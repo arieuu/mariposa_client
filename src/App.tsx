@@ -31,7 +31,7 @@ function App() {
   function updateFilteredWords(filteredWords: string[]) {
     
     // this function will set the filtered words coming from the input
-    
+
     setFilteredWords(filteredWords)
   }
 
@@ -39,8 +39,8 @@ function App() {
     <div className="min-h-screen bg-gray-50">
       <Box>
       <Navbar />
-      <Hero job_postings_qtty={jobList?.length} sendFilteredWords={updateFilteredWords}/>
-      <JobSection title='Available postings' jobList={ jobList } filteredWords={filteredWords}/>
+      <Hero job_postings_qtty={jobList?.length} sendFilteredWords={updateFilteredWords} filteredWords={filteredWords}/>
+      <JobSection title='Available postings' jobList={ jobList } filteredWords={ filteredWords } updateFilteredWords={ updateFilteredWords }/>
       <Footer />
       </Box>
     </div>

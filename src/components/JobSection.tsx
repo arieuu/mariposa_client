@@ -7,9 +7,10 @@ interface Props {
     title: string;
     jobList?: IJobListing[];
     filteredWords?: string[];
+    updateFilteredWords(filteredWords?: string[]): void
 }
 
-function JobSection({ title, jobList, filteredWords}: Props) {
+function JobSection({ title, jobList, filteredWords, updateFilteredWords }: Props) {
   
   /* We use the displayedJobs state to tracke what jobs can be displayed at any point in time.
      The page will always display the entire displayedJobs, so we mess with setDisplayed jobs and update state
@@ -49,6 +50,11 @@ function JobSection({ title, jobList, filteredWords}: Props) {
 
     if(words.includes("Unfilter")) {
       setFilteredItemsState({ "filtered": false, items: undefined})
+
+      // Clear the search box filter as well by reseting all filtered words
+      
+      updateFilteredWords(undefined)
+
       return
     }
 

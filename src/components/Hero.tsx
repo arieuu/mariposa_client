@@ -4,9 +4,10 @@ import React, { useRef, useState } from "react";
 interface Props {
   job_postings_qtty?: number
   sendFilteredWords(keywords: string[]): void
+  filteredWords?: string[]
 }
 
-function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
+function Hero({ job_postings_qtty, sendFilteredWords, filteredWords }:Props) {
   
   const [searchKeyword, setSearchKeyword] = useState<string[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -21,7 +22,6 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
 
     value && setSearchKeyword(value) 
     value && sendFilteredWords(value)
-    console.log(searchKeyword)
   }
 
   return (
@@ -34,13 +34,13 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
 
         <form onSubmit={searchAndFilter}>
 
-        <input type="text" autoComplete="off" placeholder="Backend Developer" name="searchInput" ref={searchInputRef}
-          className="w-full px-6 py-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+          <input type="text" autoComplete="off" placeholder="Backend Developer" name="searchInput" ref={searchInputRef}
+            className="w-full px-6 py-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
-        <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">
-          Search
-        </button>
+          <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white px-6 py-2 rounded-full hover:bg-gray-800">
+            Search
+          </button>
 
         </form>
 
@@ -48,9 +48,9 @@ function Hero({ job_postings_qtty, sendFilteredWords }:Props) {
       </div>
 
       <div className="mt-4">
-        { searchKeyword.length > 0 && <h4> Filters </h4>}
+        { searchKeyword.length > 0 && filteredWords  && <h4> Filters </h4>}
 
-        { searchKeyword.length > 0  && 
+        { searchKeyword.length > 0  &&  filteredWords &&
           <>
 
             { searchKeyword.map((word, index) => {
